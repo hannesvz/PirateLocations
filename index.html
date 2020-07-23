@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Pirate Location Name Generator</title>
+
+<style>
+  body {
+    background-color: #cccccc;
+  }
+  
+  .button {
+    border: none;
+    font-size: 18px;
+    color: black;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    margin: 5px 5px;
+	cursor: pointer;
+  }
+  
+  p {
+	border: none;
+	font-size: 18px;
+	font-family: Verdana;
+	color: black;
+	padding: 15px 32px;
+    text-align: left;
+    text-decoration: none;
+    display: inline-block;
+    margin: 5px 5px;
+  }
+  
+</style>
+
+<script>
+
+const name_structures = [
+  'descriptive;established',
+  'descriptive;possessive;established',
+  'descriptive;geographical',
+  'descriptive;possessive;geographical',
+  'descriptive;established;postnominal',
+  'possessive;geographical;postnominal',
+  'descriptive;geographical;postnominal',
+  'possessive;geographical;postnominal',
+  'established;postnominal',
+  'geographical;postnominal'
+]
+
+const data = {
+  'descriptive': [
+    'Blackened',
+    'Broken',
+    'Concealed',
+    'Dreaded',
+    'Fancy',
+    'Grand',
+    'Hidden',
+    'Mystic',
+    'Plentiful',
+    'Ravaged',
+    'Royal',
+    'Salted',
+    'Scorched',
+    'Secluded',
+    'Secret',
+    'Splendid',
+    'Stolen',
+    'Sunken',
+    'Sweet',
+    'Wrecked'
+  ],
+  'possessive': [
+    'Barracuda\'s',
+    'Captain\'s',
+    'Dragon\'s',
+    'Guild\'s',
+    'Hunter\'s',
+    'Kraken\'s',
+    'Maiden\'s',
+    'Mermaid\'s',
+    'Order\'s',
+    'Parrot\'s',
+    'Raider\'s',
+    'Sailor\'s',
+    'Shark\'s',
+    'Shipwreck\'s',
+    'Siren\'s',
+    'Storm\'s',
+    'Thieves\'',
+    'Triton\'s',
+    'Turtle\'s',
+    'Wanderer\'s'
+  ],
+  'established': [
+    'Asylum',
+    'Bounty',
+    'Den',
+    'Fort',
+    'Gem',
+    'Harbor',
+    'Haven',
+    'Hideout',
+    'Hold',
+    'Jewel',
+    'Keep',
+    'Port',
+    'Refuge',
+    'Rest',
+    'Retreat',
+    'Sanctuary',
+    'Shelter',
+    'Stronghold',
+    'Treasure',
+    'Trove'
+  ],
+  'geographical': [
+    'Archipelago',
+    'Atoll',
+    'Bay',
+    'Bluffs',
+    'Cliffs',
+    'Cove',
+    'Crag',
+    'Enclave',
+    'Groves',
+    'Hollow',
+    'Island',
+    'Isle',
+    'Lagoon',
+    'Peninsula',
+    'Reef',
+    'Ridge',
+    'Rock',
+    'Sands',
+    'Shallows',
+    'Shores'
+  ],
+  'postnominal': [
+    'amidst the Maelstroms',
+    'between the Waves',
+    'in the Mists',
+    'in the Shadows',
+    'of a Thousand Coins',
+    'of Plentiful Riches',
+    'of Skulls',
+    'of the Countless Wrecks',
+    'of the Cursed',
+    'of the Damned',
+    'of the Depths',
+    'of the Homesick',
+    'of the Lawless',
+    'of the Lost Souls',
+    'of the Moon',
+    'of the Raven',
+    'of the Sunset',
+    'of the Sweet Embrace',
+    'of the Tides',
+    'of Whispers'
+  ]
+}
+
+rand = (arr) => arr[Math.floor(Math.random()*arr.length)];
+
+generateName = () => {
+  let ns_rand = rand(name_structures);
+  ns_arr = ns_rand.split(';');
+  let location = [];
+  for (let nsi of ns_arr) {
+    section = rand(data[nsi]);
+    location.push(section);
+  }
+  return location.join(' ');
+}
+
+generateNames = () => {
+  list = [];
+  for (let i = 0; i < 20; i++) {
+    list.push(generateName());
+  }
+  document.getElementById('list').innerText = list.join('\n');
+}
+
+</script>
+
+</head>
+<body>
+  <button class="button button1" id="generate" onClick="generateNames()">Generate</button><br />
+  <p id="list"></p>
+</body>
+</html>
